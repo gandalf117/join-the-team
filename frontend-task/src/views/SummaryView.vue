@@ -4,25 +4,27 @@
         <table v-if="journeys.length" class="table">
             <thead>
                 <tr>
-                    <th>Position</th>
+                    <th>Rank</th>
                     <th>Train</th>
+                    <th>Speed</th>
                     <th>Stops</th>
                     <th>Time Travelled</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(journey, index) in sortedJourneys"
-                    :key="journey.name + index">
+                <tr v-for="(train, index) in sortedTrains"
+                    :key="train.name + index">
                     <td>{{ index + 1 }}</td>
-                    <td>{{ journey.name }}</td>
-                    <td>{{ journey.stops }}</td>
-                    <td v-if="journey.finished">
-                        {{ journey.time }} minutes
+                    <td>{{ train.name }}</td>
+                    <td>{{ train.speed }}</td>
+                    <td>{{ train.stops }}</td>
+                    <td v-if="train.finished">
+                        {{ train.time }} minutes
                     </td>
-                    <td v-else-if="!journey.time">
+                    <td v-else-if="!train.time">
                         Not started.
                     </td>
-                    <td v-else>{{ journey.time }} minutes</td>
+                    <td v-else>{{ train.time }} minutes</td>
                 </tr>
             </tbody>
         </table>
@@ -39,7 +41,7 @@
         name: 'summary-view',
         data () {
             return {
-                sortedJourneys: []
+                sortedTrains: []
             }
         },
 		computed: {
@@ -51,15 +53,16 @@
             journeys: {
                 deep: true,
                 handler () {
-                    this.sortedJourneys = this.journeys.map(journey => {
+                    this.sortedTrains = this.journeys.map(journey => {
                         return {
                             name: journey.train.name,
+                            speed: journey.train.speed,
                             stops: journey.stations.length,
                             finished: journey.train.finalStationReached,
                             time: journey.train.totalTimeTravelled
                         }
                     })
-                    this.sortedJourneys.sort((a, b) => a.time - b.time)
+                    this.sortedTrains.sort((a, b) => a.time - b.time)
                 }
             }
         }
