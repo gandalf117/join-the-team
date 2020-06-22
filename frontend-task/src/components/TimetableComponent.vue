@@ -36,20 +36,20 @@
 </template>
 
 <script>
-    import RailroadComponent from '@/components/RailroadComponent'
+import RailroadComponent from '@/components/RailroadComponent'
 
-    export default {
-        name: 'timetable-component',
-		components: {
-			RailroadComponent
-		},
-        props: {
-            journeys: {
-                type: Array,
-                required: true
-            } 
-        }
+export default {
+  name: 'timetable-component',
+  components: {
+    RailroadComponent
+  },
+  props: {
+    journeys: {
+      type: Array,
+      required: true
     }
+  }
+}
 </script>
 
 <style lang='scss'>
@@ -90,5 +90,5 @@
         .timetable-concise {
             display: block;
         }
-    }    
+    }
 </style>

@@ -25,7 +25,7 @@
 						@click="resetClock(); resetTrainPosition()">
 						Reset
 					</button>
-				</span>	
+				</span>
 			</h3>
 			<div class="my-2 my-md-0 control-info">
 				<span class="p-2">
@@ -51,58 +51,58 @@
 </template>
 
 <script>
-	import { mapState, mapActions } from 'vuex'
-	import TimetableComponent from '@/components/TimetableComponent'
+import { mapState, mapActions } from 'vuex'
+import TimetableComponent from '@/components/TimetableComponent'
 
-	export default {
-		name: 'schedule-view',
-		data () {
-			return {
-				tableLoaded: false
-			}
-		},
-		components: {
-			TimetableComponent
-		},
-		computed: {
-			...mapState({
-				currentTime: state => state.clockModule.currentTime,
-				isClockRunning: state => state.clockModule.isClockRunning,
-				minutes: state => state.clockModule.minutes,
-				journeys: state => state.timetableModule.journeys
-			}),
-			isStarted () {
-				return this.minutes > 0
-			},
-			isFinished () {
-				return this.minutes >= 120
-			},
-			trainsInTransit () {
-				let trains = this.journeys.filter(journey => {
-					return journey.train.isInTransit
-				}).map(journey => journey.train.name)
-				return trains.join(',')
-			}
-		},
-		methods: {
-			...mapActions([
-				'startClock',
-				'pauseClock',
-				'resetClock',
-				'getJourneys'
-			]),
-			resetTrainPosition () {
-				for (let journey of this.journeys) {
-					journey.train.reset()
-				}
-			}
-		},
-		created () {
-			this.getJourneys().then(() => {
-				this.tableLoaded = true
-			})
-		}
-	}
+export default {
+  name: 'schedule-view',
+  data () {
+    return {
+      tableLoaded: false
+    }
+  },
+  components: {
+    TimetableComponent
+  },
+  computed: {
+    ...mapState({
+      currentTime: state => state.clockModule.currentTime,
+      isClockRunning: state => state.clockModule.isClockRunning,
+      minutes: state => state.clockModule.minutes,
+      journeys: state => state.timetableModule.journeys
+    }),
+    isStarted () {
+      return this.minutes > 0
+    },
+    isFinished () {
+      return this.minutes >= 120
+    },
+    trainsInTransit () {
+      const trains = this.journeys.filter(journey => {
+        return journey.train.isInTransit
+      }).map(journey => journey.train.name)
+      return trains.join(',')
+    }
+  },
+  methods: {
+    ...mapActions([
+      'startClock',
+      'pauseClock',
+      'resetClock',
+      'getJourneys'
+    ]),
+    resetTrainPosition () {
+      for (const journey of this.journeys) {
+        journey.train.reset()
+      }
+    }
+  },
+  created () {
+    this.getJourneys().then(() => {
+      this.tableLoaded = true
+    })
+  }
+}
 </script>
 
 <style lang='scss'>

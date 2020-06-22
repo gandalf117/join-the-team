@@ -35,38 +35,38 @@
 </template>
 
 <script>
-    import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
-    export default {
-        name: 'summary-view',
-        data () {
-            return {
-                sortedTrains: []
-            }
-        },
-		computed: {
-			...mapState({
-				journeys: state => state.timetableModule.journeys
-            })
-        },
-        watch: {
-            journeys: {
-                deep: true,
-                handler () {
-                    this.sortedTrains = this.journeys.map(journey => {
-                        return {
-                            name: journey.train.name,
-                            speed: journey.train.speed,
-                            stops: journey.stations.length,
-                            finished: journey.train.finalStationReached,
-                            time: journey.train.totalTimeTravelled
-                        }
-                    })
-                    this.sortedTrains.sort((a, b) => a.time - b.time)
-                }
-            }
-        }
+export default {
+  name: 'summary-view',
+  data () {
+    return {
+      sortedTrains: []
     }
+  },
+  computed: {
+    ...mapState({
+      journeys: state => state.timetableModule.journeys
+    })
+  },
+  watch: {
+    journeys: {
+      deep: true,
+      handler () {
+        this.sortedTrains = this.journeys.map(journey => {
+          return {
+            name: journey.train.name,
+            speed: journey.train.speed,
+            stops: journey.stations.length,
+            finished: journey.train.finalStationReached,
+            time: journey.train.totalTimeTravelled
+          }
+        })
+        this.sortedTrains.sort((a, b) => a.time - b.time)
+      }
+    }
+  }
+}
 </script>
 
 <style lang='scss'>

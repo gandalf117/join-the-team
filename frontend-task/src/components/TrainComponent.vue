@@ -3,35 +3,35 @@
 </template>
 
 <script>
-	import { mapState } from 'vuex'
-	import { Journey } from '@/classes/Journey'
+import { mapState } from 'vuex'
+import { Journey } from '@/classes/Journey'
 
-	export default {
-		name: 'train-component',
-		props: {
-			journey: {
-				type: Journey,
-				required: true
-			}
-		},
-		computed: {
-			...mapState({
-				minutes: state => state.clockModule.minutes
-			}),
-			train () {
-				return this.journey.train
-			},
-			position () {
-				return this.train.position
-			}
-		},
-		watch: {
-			minutes (newVal, oldVal) {
-				let timePassed = newVal - oldVal
-				this.train.moveTrain(timePassed)
-			}
-		}
-	}
+export default {
+  name: 'train-component',
+  props: {
+    journey: {
+      type: Journey,
+      required: true
+    }
+  },
+  computed: {
+    ...mapState({
+      minutes: state => state.clockModule.minutes
+    }),
+    train () {
+      return this.journey.train
+    },
+    position () {
+      return this.train.position
+    }
+  },
+  watch: {
+    minutes (newVal, oldVal) {
+      const timePassed = newVal - oldVal
+      this.train.moveTrain(timePassed)
+    }
+  }
+}
 </script>
 
 <style lang='scss'>

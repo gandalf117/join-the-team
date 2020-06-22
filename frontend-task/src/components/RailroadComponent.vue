@@ -12,33 +12,33 @@
 </template>
 
 <script>
-	import { Journey } from '@/classes/Journey'
-	import StationComponent from '@/components/StationComponent'
-	import TrainComponent from '@/components/TrainComponent'
-	import { PX_PER_MIN } from '@/config.js'
+import { Journey } from '@/classes/Journey'
+import StationComponent from '@/components/StationComponent'
+import TrainComponent from '@/components/TrainComponent'
+import { PX_PER_MIN } from '@/config.js'
 
-	export default {
-		name: 'railroad-component',
-		components: {
-			StationComponent,
-			TrainComponent
-		},
-		data () {
-			return {
-			}
-		},
-		props: {
-			journey: {
-				type: Journey,
-				required: true
-			}
-		},
-		methods: {
-			getRailroadLength () {
-				return this.journey.totalTime * PX_PER_MIN
-			}
-		}
-	}
+export default {
+  name: 'railroad-component',
+  components: {
+    StationComponent,
+    TrainComponent
+  },
+  data () {
+    return {
+    }
+  },
+  props: {
+    journey: {
+      type: Journey,
+      required: true
+    }
+  },
+  methods: {
+    getRailroadLength () {
+      return this.journey.totalTime * PX_PER_MIN
+    }
+  }
+}
 </script>
 
 <style lang='scss'>

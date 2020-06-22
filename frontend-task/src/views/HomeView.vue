@@ -11,7 +11,7 @@
 </template>
 
 <script>
-    export default {
-        name: 'home-view'
-    }
+export default {
+  name: 'home-view'
+}
 </script>

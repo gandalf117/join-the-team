@@ -10,17 +10,17 @@
 </template>
 
 <script>
-	import { Station } from '@/classes/Station'
+import { Station } from '@/classes/Station'
 
-	export default {
-		name: 'station-component',
-		props: {
-			station: {
-				type: Station,
-				required: true
-			}
-		}
-	}
+export default {
+  name: 'station-component',
+  props: {
+    station: {
+      type: Station,
+      required: true
+    }
+  }
+}
 </script>
 
 <style lang='scss'>
